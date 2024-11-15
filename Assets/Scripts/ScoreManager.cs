@@ -16,20 +16,21 @@ public class ScoreManager : MonoBehaviour
 
     public void HighScoreUpdate()
     {
+        float currentTime = manager.time; 
+
         if (PlayerPrefs.HasKey("SavedHighScore"))
         {
-            if (manager.time * 10 < PlayerPrefs.GetFloat("SavedHighScore"))
+            if (currentTime < PlayerPrefs.GetFloat("SavedHighScore"))
             {
-                PlayerPrefs.SetFloat("SavedHighScore", manager.time * 10);
+                PlayerPrefs.SetFloat("SavedHighScore", currentTime);
                 bestTimePanel.SetActive(true);
             }
-
         }
         else
         {
-            PlayerPrefs.SetFloat("SavedHighScore", manager.time * 10);
+            PlayerPrefs.SetFloat("SavedHighScore", currentTime);
         }
 
-        highScoreText.text = PlayerPrefs.GetFloat("SavedHighScore").ToString("0");
+        highScoreText.text = $"BEST TIME: {PlayerPrefs.GetFloat("SavedHighScore"):0.0} SECONDS";
     }
 }

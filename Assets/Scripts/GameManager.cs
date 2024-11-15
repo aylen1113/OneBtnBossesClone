@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         if (canChangeTime)
         {
             time += Time.deltaTime;
-            textTime.text = (time * 10).ToString("0");
+            textTime.text = time.ToString("0.0");
         }
     }
 
@@ -59,7 +59,12 @@ public class GameManager : MonoBehaviour
         activatePanel(victoryPanel);
         scoreManager.HighScoreUpdate();
 
-        textTime.text = "TIME                                          " + (time * 10).ToString("0");
+
+        float finalTime = time; 
+        float bestTime = PlayerPrefs.GetFloat("SavedHighScore");
+
+        textTime.text = $"TIME: {finalTime:0.0} SECONDS\nBEST TIME: {bestTime:0.0} SECONDS";
+
         textTime.transform.SetParent(informationPanel.transform);
     }
 }
