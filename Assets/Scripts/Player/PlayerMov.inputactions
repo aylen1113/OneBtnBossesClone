@@ -1,0 +1,54 @@
+{
+    "name": "PlayerMov",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "93ba2e27-37be-4187-98ad-7632e8251215",
+            "actions": [
+                {
+                    "name": "PlayerDirection",
+                    "type": "Button",
+                    "id": "f8a678f2-a36c-4785-a0fd-da7be98ce534",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PowerUp",
+                    "type": "Button",
+                    "id": "26664de1-8037-4b32-9047-86e331488f9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "51c8faee-17d1-4399-b503-c51ca8e9c1ee",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70169867-d0ff-4af6-b85a-d3542e00543a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

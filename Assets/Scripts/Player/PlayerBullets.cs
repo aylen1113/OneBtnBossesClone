@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class PlayersBullets : MonoBehaviour
 {
-    public Transform enemy;             // Referencia al enemigo en el centro
-    public GameObject bulletPrefab;     // Prefab de la bala
-    public float rotationSpeed = 50f;   // Velocidad de movimiento circular
-    public float bulletSpeed = 10f;     // Velocidad de la bala
-    public float fireRate = 1f;         // Intervalo de disparo
+    public Transform enemy;            
+    public GameObject bulletPrefab;    
+    public float rotationSpeed = 50f;   
+    public float bulletSpeed = 10f;     
+    public float fireRate = 1f;         
 
     private float fireTimer;
 
     void Update()
     {
-        // Movimiento circular alrededor del enemigo
+       
         if (enemy != null)
         {
             transform.RotateAround(enemy.position, Vector3.forward, rotationSpeed * Time.deltaTime);
@@ -31,17 +31,17 @@ public class PlayersBullets : MonoBehaviour
     {
         if (enemy != null && bulletPrefab != null)
         {
-            // Crear la bala
+         
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-            // Calcular dirección hacia el enemigo
+           
             Vector2 directionToEnemy = (enemy.position - transform.position).normalized;
 
-            // Ajustar la rotación de la bala para que apunte al enemigo
+
             float angle = Mathf.Atan2(directionToEnemy.y, directionToEnemy.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-            // Asignar velocidad a la bala
+         
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = directionToEnemy * bulletSpeed;
         }
