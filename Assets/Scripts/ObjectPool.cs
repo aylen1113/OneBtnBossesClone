@@ -14,6 +14,14 @@ public class ObjectPool : MonoBehaviour
         {
             GameObject obj = Instantiate(prefab, transform);
             obj.SetActive(false);
+
+            PooledObject pooled = obj.GetComponent<PooledObject>();
+
+            if (pooled == null)
+                pooled = obj.AddComponent<PooledObject>();
+
+            pooled.pool = this;
+
             pool.Enqueue(obj);
         }
     }
@@ -23,12 +31,24 @@ public class ObjectPool : MonoBehaviour
         if (pool.Count == 0)
         {
             GameObject obj = Instantiate(prefab, transform);
+
+            PooledObject pooled = obj.GetComponent<PooledObject>();
+
+            if (pooled == null)
+                pooled = obj.AddComponent<PooledObject>();
+
+            pooled.pool = this;
+
             obj.SetActive(false);
             pool.Enqueue(obj);
+
+            Debug.Log("nuevo objeto");
         }
 
         GameObject objectToUse = pool.Dequeue();
         objectToUse.SetActive(true);
+
+        Debug.Log("objeto obtenido" + pool.Count);
 
         return objectToUse;
     }
@@ -37,5 +57,7 @@ public class ObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
         pool.Enqueue(obj);
+
+        Debug.Log("objeto devuelto" + pool.Count);
     }
 }

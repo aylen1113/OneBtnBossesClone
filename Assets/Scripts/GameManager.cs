@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     bool canChangeTime = true;
 
     [Header("PANELS")]
@@ -28,12 +30,22 @@ public class GameManager : MonoBehaviour
         victoryPanel.SetActive(false);
     }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
         Timer();
     }
-
-
 
 
     private void Timer()

@@ -11,13 +11,13 @@ public class PlayerHealth : Health
         if (collision.gameObject.CompareTag("EnemyBullet") && canTakeDamage)
         {
             TakeDamage();
-            Destroy(collision.gameObject);
+            collision.GetComponent<PooledObject>().ReturnToPool();
         }
     }
     protected override void HealthIsZero()
     {
         Debug.Log("player dead");
         Time.timeScale = 0;
-        manager.activatePanel(manager.gameOverPanel);
+        GameManager.Instance.activatePanel(GameManager.Instance.gameOverPanel);
     }
 }

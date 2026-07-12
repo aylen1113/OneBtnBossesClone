@@ -8,12 +8,11 @@ public abstract class Health : MonoBehaviour
     //[SerializeField] protected string Bullet;
     [SerializeField] protected int health;
     public bool canTakeDamage = true;
-    public GameManager manager;
 
 
     protected void Start()
     {
-        manager = FindAnyObjectByType<GameManager>();
+
         canTakeDamage = true;
     }
 

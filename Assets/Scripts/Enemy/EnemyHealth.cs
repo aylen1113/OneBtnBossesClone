@@ -9,13 +9,13 @@ public class EnemyHealth : Health
         if (collision.gameObject.CompareTag("Bullet") && canTakeDamage)
         {
             TakeDamage();
-            Destroy(collision.gameObject);
+            collision.GetComponent<PooledObject>().ReturnToPool();
         }
     }
     protected override void HealthIsZero()
     {
         Destroy(gameObject);
         Time.timeScale = 0;
-        manager.Win();
+        GameManager.Instance.Win();
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
 
-    public GameObject projectilePrefab;
+    public ObjectPool projectilePool;
     public float shootingInterval = 2f;
     public float projectileSpeed = 5f;
 
@@ -21,8 +21,10 @@ public class EnemyShooting : MonoBehaviour
 
     void Shoot()
     {
+        GameObject projectile = projectilePool.GetObject();
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        projectile.transform.position = transform.position;
+        projectile.transform.rotation = Quaternion.identity;
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.velocity = -transform.up * projectileSpeed;

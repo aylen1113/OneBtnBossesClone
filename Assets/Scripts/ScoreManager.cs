@@ -6,17 +6,22 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-   
-    public GameManager manager;
+    public static ScoreManager Instance;
 
-   
     [SerializeField] TMP_Text highScoreText;
     [SerializeField] GameObject bestTimePanel;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     public void HighScoreUpdate()
     {
-        float currentTime = manager.time; 
+        float currentTime = GameManager.Instance.time;
 
         if (PlayerPrefs.HasKey("SavedHighScore"))
         {
@@ -31,6 +36,7 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.SetFloat("SavedHighScore", currentTime);
         }
 
-        highScoreText.text = $"BEST TIME: {PlayerPrefs.GetFloat("SavedHighScore"):0.0} SECONDS";
+        highScoreText.text =
+            $"BEST TIME: {PlayerPrefs.GetFloat("SavedHighScore"):0.0} SECONDS";
     }
 }
