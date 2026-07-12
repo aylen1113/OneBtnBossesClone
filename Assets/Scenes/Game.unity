@@ -454,7 +454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   canTakeDamage: 1
-  manager: {fileID: 1647220735}
 --- !u!114 &94273047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +987,7 @@ GameObject:
   - component: {fileID: 445309859}
   - component: {fileID: 445309860}
   - component: {fileID: 445309861}
+  - component: {fileID: 445309862}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1136,7 +1136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   canTakeDamage: 1
-  manager: {fileID: 1647220735}
 --- !u!114 &445309861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1151,6 +1150,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   conePrefab: {fileID: 6617943108699543978, guid: 9af6c47feb6818841a47dd0e19626dc5, type: 3}
   circleRadius: 10
+--- !u!114 &445309862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445309852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f9ce50d65680c4ba67e1233273f55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleFactory: {fileID: 0}
+  attackInterval: 5
+  circleRadius: 5
 --- !u!1 &469442679
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2405,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270776842}
   m_CullTransparentMesh: 1
+--- !u!1 &1405130215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1405130217}
+  - component: {fileID: 1405130216}
+  m_Layer: 0
+  m_Name: ObstacleFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1405130216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405130215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ac9e821d540094695fffaf470fd463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePool: {fileID: 0}
+--- !u!4 &1405130217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405130215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.2302, y: -1.5357517, z: -0.0934081}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479751951
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2e2c03b72b73143b6bf6f965ec9974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1647220735}
   highScoreText: {fileID: 1557038619}
   bestTimePanel: {fileID: 670501150}
 --- !u!1 &2016254292
@@ -2864,3 +2922,4 @@ SceneRoots:
   - {fileID: 670501154}
   - {fileID: 897926870}
   - {fileID: 823583004}
+  - {fileID: 1405130217}
