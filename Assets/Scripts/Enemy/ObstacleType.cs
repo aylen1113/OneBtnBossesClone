@@ -1,4 +1,6 @@
 public enum ObstacleType
 {
-    Diamond
+    Diamond,
+    Cone,
+    Projectile
 }

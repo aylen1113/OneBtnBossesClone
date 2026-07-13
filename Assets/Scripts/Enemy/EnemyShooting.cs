@@ -3,30 +3,39 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
 
-    public ObjectPool projectilePool;
-    public float shootingInterval = 2f;
-    public float projectileSpeed = 5f;
+    public float speed = 8f;
+    public float lifeTime = 4f;
 
-    private float nextShotTime;
+    Vector2 direction;
+
+    float timer;
+
+    PooledObject pooled;
+
+    void Awake()
+    {
+        pooled = GetComponent<PooledObject>();
+    }
+
+    public void Initialize(Vector2 dir)
+    {
+        direction = dir.normalized;
+    }
+
+    void OnEnable()
+    {
+        timer = lifeTime;
+    }
 
     void Update()
     {
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
 
-        if (Time.time >= nextShotTime)
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
         {
-            Shoot();
-            nextShotTime = Time.time + shootingInterval;
+            pooled.ReturnToPool();
         }
-    }
-
-    void Shoot()
-    {
-        GameObject projectile = projectilePool.GetObject();
-
-        projectile.transform.position = transform.position;
-        projectile.transform.rotation = Quaternion.identity;
-
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        rb.velocity = -transform.up * projectileSpeed;
     }
 }

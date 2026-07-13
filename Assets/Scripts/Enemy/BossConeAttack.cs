@@ -2,14 +2,35 @@ using UnityEngine;
 
 public class BossConeAttack : MonoBehaviour
 {
-    public GameObject conePrefab;
-    public float circleRadius = 10f;
+    public ObstacleFactory factory;
 
-    public void SpawnCone()
+    public float attackInterval = 4f;
+    public float circleRadius = 6f;
+
+    private float timer;
+
+    void Update()
     {
-        float randomAngle = Random.Range(0f, 360f);
-        Vector2 spawnPosition = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle)) * circleRadius;
-        Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
-        Instantiate(conePrefab, spawnPosition, rotation);
+        timer += Time.deltaTime;
+
+        if (timer >= attackInterval)
+        {
+            SpawnCone();
+
+            timer = 0;
+        }
+    }
+
+    void SpawnCone()
+    {
+        float angle = Random.Range(0f, 360f);
+
+        Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+
+        Vector2 spawnPosition = direction * circleRadius;
+
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, -direction);
+
+        factory.CreateObstacle(ObstacleType.Cone, spawnPosition, rotation);
     }
 }
