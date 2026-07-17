@@ -1,27 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossAttack : MonoBehaviour
+public class BossAttack : AttackBase
 {
-    public ObstacleFactory obstacleFactory;
-    public float attackInterval = 5f;
-    public float circleRadius = 10f;
+    [SerializeField] private float circleRadius = 10f;
 
-    private void Start()
+    public override IEnumerator ExecuteAttack()
     {
-        StartCoroutine(SpawnRoutine());
-    }
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector2 spawnPosition = randomDirection * circleRadius;
 
-    IEnumerator SpawnRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(attackInterval);
+        factory.CreateObstacle(ObstacleType.Diamond, spawnPosition);
 
-            Vector2 randomDirection = Random.insideUnitCircle.normalized;
-            Vector2 spawnPosition = randomDirection * circleRadius;
-
-            obstacleFactory.CreateObstacle(ObstacleType.Diamond, spawnPosition);
-        }
+        yield return new WaitForSeconds(1f);
     }
 }

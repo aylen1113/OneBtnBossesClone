@@ -1,27 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
-public class BossConeAttack : MonoBehaviour
+public class BossConeAttack : AttackBase
 {
-    public ObstacleFactory factory;
+    [SerializeField] private float circleRadius = 6f;
 
-    public float attackInterval = 4f;
-    public float circleRadius = 6f;
-
-    private float timer;
-
-    void Update()
+    public override IEnumerator ExecuteAttack()
     {
-        timer += Time.deltaTime;
+        SpawnCone();
 
-        if (timer >= attackInterval)
-        {
-            SpawnCone();
-
-            timer = 0;
-        }
+        yield return new WaitForSeconds(2f);
     }
 
-    void SpawnCone()
+    private void SpawnCone()
     {
         float angle = Random.Range(0f, 360f);
 

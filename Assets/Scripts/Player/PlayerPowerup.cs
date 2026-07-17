@@ -19,6 +19,8 @@ public class PlayerPowerup : MonoBehaviour
     private bool isPowerUpActive = false;
     private bool powerButtonHeld = false;
 
+    public bool IsPowerUpActive => isPowerUpActive;
+
     private PlayerMov controls;
 
     private void Awake()

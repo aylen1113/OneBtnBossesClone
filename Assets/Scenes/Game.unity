@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8292142374180847757, guid: ca031851cf0e8ea4c8a4fd66e74930fd, type: 3}
-  initialSize: 20
+  initialSize: 30
 --- !u!4 &62668177
 Transform:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5bf6b21711efd4b93bb857b9bfc362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 4.5
   angularSpeed: 2
 --- !u!50 &94273040
 Rigidbody2D:
@@ -442,7 +442,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
   bulletPool: {fileID: 1078021871}
   rotationSpeed: 200
   bulletSpeed: 5
-  fireRate: 1
+  fireRate: 0.1
 --- !u!114 &94273046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   canTakeDamage: 0
+  playerPowerup: {fileID: 94273047}
 --- !u!114 &94273047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,8 +797,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'TIME:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
+  m_sharedMaterial: {fileID: 4450298762389653252, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1014,12 +1015,12 @@ GameObject:
   m_Component:
   - component: {fileID: 445309854}
   - component: {fileID: 445309853}
-  - component: {fileID: 445309857}
   - component: {fileID: 445309859}
   - component: {fileID: 445309860}
   - component: {fileID: 445309861}
   - component: {fileID: 445309862}
   - component: {fileID: 445309863}
+  - component: {fileID: 445309864}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1094,20 +1095,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &445309857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445309852}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d14a1046899cb4fa8af13199d5dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  lifeTime: 4
 --- !u!61 &445309859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1165,7 +1152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a227d1f4c65e18a45832a79f97096bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 300
   canTakeDamage: 1
 --- !u!114 &445309861
 MonoBehaviour:
@@ -1194,9 +1181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f9ce50d65680c4ba67e1233273f55c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleFactory: {fileID: 1405130216}
+  factory: {fileID: 1405130216}
   attackInterval: 5
-  circleRadius: 5
+  circleRadius: 4.5
 --- !u!114 &445309863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1213,6 +1200,20 @@ MonoBehaviour:
   attackInterval: 2
   spawnDistance: 0.8
   projectileCount: 10
+--- !u!114 &445309864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445309852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe5841c73fe56b84bb71065053097b83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialDelay: 3
+  timeBetweenAttacks: 4
 --- !u!1 &469442679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,8 +1273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
+  m_sharedMaterial: {fileID: 4450298762389653252, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1381,7 +1382,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107.941284, y: -60.447083}
+  m_AnchoredPosition: {x: 165, y: -60.447083}
   m_SizeDelta: {x: 415.8826, y: 170.8942}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &481959344
@@ -1406,8 +1407,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAME OVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
+  m_sharedMaterial: {fileID: 4450298762389653252, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1498,7 +1499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &487867918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1651,7 +1652,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.09545212, g: 0.36211076, b: 0.3679245, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1766,8 +1767,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: VICTORY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
+  m_sharedMaterial: {fileID: 4450298762389653252, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2089,10 +2090,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2824,8 +2825,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
+  m_sharedMaterial: {fileID: 4450298762389653252, guid: 935816a9ed259fc4cad76665bf2d12f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2931,7 +2932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 998082793}
   victoryPanel: {fileID: 670501150}
-  scoreManager: {fileID: 1647220737}
   informationPanel: {fileID: 897926866}
   textTime: {fileID: 403290939}
   time: 0
@@ -2964,6 +2964,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 1557038619}
   bestTimePanel: {fileID: 670501150}
+--- !u!1 &1763859774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763859776}
+  - component: {fileID: 1763859775}
+  m_Layer: 0
+  m_Name: 239-2392981_circulo-circle-outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1763859775
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763859774}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 62c35d6828a5c38428e3e00f830c2fc9, type: 3}
+  m_Color: {r: 0.4783731, g: 0.8113208, b: 0.8113208, a: 0.4392157}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 7, y: 7}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1763859776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763859774}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2016254292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,3 +3152,4 @@ SceneRoots:
   - {fileID: 897926870}
   - {fileID: 823583004}
   - {fileID: 1405130217}
+  - {fileID: 1763859776}

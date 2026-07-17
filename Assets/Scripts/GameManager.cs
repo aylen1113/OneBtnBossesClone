@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
   public GameObject gameOverPanel;
    public GameObject victoryPanel;
 
-    [Header("OTHER SCRIPTS")]
-    public ScoreManager scoreManager;
 
     [Header("TIME")]
     [SerializeField] GameObject informationPanel;
@@ -69,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         activatePanel(victoryPanel);
-        scoreManager.HighScoreUpdate();
+        ScoreManager.Instance.HighScoreUpdate();
 
 
         float finalTime = time; 
