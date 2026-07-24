@@ -23,5 +23,7 @@ public class BossConeAttack : AttackBase
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, -direction);
 
         factory.CreateObstacle(ObstacleType.Cone, spawnPosition, rotation);
+
+
     }
 }

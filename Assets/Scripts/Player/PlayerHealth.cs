@@ -10,14 +10,16 @@ public class PlayerHealth : Health
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("EnemyBullet") && canTakeDamage)
-        {
-            TakeDamage();
-            collision.GetComponent<PooledObject>().ReturnToPool();
+        if (!collision.CompareTag("EnemyBullet"))
+            return;
 
-            if (playerPowerup.IsPowerUpActive)
-                return;
-        }
+        collision.GetComponent<PooledObject>().ReturnToPool();
+
+        if (playerPowerup.IsPowerUpActive)
+            return;
+
+        if (canTakeDamage)
+            TakeDamage();
     }
     protected override void HealthIsZero()
     {

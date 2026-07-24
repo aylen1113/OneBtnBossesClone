@@ -161,3 +161,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 4
+  spriteRenderer: {fileID: 2826183286544734589}
+  obstacleCollider: {fileID: -316875938522706718}
